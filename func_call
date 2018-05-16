@@ -1,0 +1,30 @@
+	 AREA main, CODE, READONLY
+	 ENTRY 
+	 EXPORT __main
+ 
+__main 
+		MOV R0,#3
+		MOV R1,#4
+		MOV R2,#5
+		MOV R4,R0
+		MOV R5,R1
+		MOV R6,R2
+		MOV R8,#2
+		BL FUNC1
+		BL FUNC2
+		BL FUNC1
+stop 
+	bal stop
+FUNC1 STMFD SP!,{R4,R5,R6,LR}
+		ADD R4,R5,R5
+		SUB R4,R4,R6
+		MOV R0,R4
+		LDMFD SP!,{R4,R5,R6,LR}
+		MOV PC,LR
+   
+FUNC2	STMFD SP!,{R6,R7,R8,LR}
+		MUL R7,R6,R8
+		MOV R2,R7
+		LDMFD SP!,{R6,R7,R8,LR}
+		MOV PC,LR
+	END
