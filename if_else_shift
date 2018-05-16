@@ -1,0 +1,23 @@
+				AREA main, CODE, READONLY
+				ENTRY 
+	 EXPORT __main
+ 
+
+	MOV R6,#4
+  MOV R0,#20
+	MOV R1,#10
+	ADD R2,R1,R0
+	MOV R3,R2
+__main 
+	CMP R3,#40
+	bls statement_if
+	bhi statement_else 
+statement_if
+		LSL R3,R3,#2
+		bal __main
+statement_else
+		LSR R3,R3,#3
+		bal __main
+stop 
+	BAL stop	
+	END	
