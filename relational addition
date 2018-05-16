@@ -1,0 +1,61 @@
+							AREA main, CODE, READONLY
+		ENTRY 
+	 EXPORT __main
+ 
+__main
+	mov r7,#0 
+	mov r6,#0
+	mov r0,#2 ;a
+	mov r1,#1  ;b
+	mov r4,#3	;c
+	mov r5,#1	;d
+	mov r2,r0	;a
+	mov r3,r1	 ;b
+loop
+	cmp r1,r4 ;1.1. start
+	movls r6,r1
+	movhi r6,r4
+	mul r7,r1,r4
+	cmp r7,#0
+	movlo r7,#-1
+	movhi r7,#1
+	mul r8,r6,r7
+	mov r6,r8
+	add r2,r2,r6
+	cmp r1,r5	  ;1.2 start
+	movls r6,r3
+	movhi r6,r5
+	mul r7,r1,r4
+	cmp r7,#0
+	movlo r7,#-1
+	movhi r7,#1
+	mul r8,r6,r7
+	mov r6,r8
+	add r2,r2,r6
+	cmp r0,r4  ;2.1 start
+	movls r6,r0
+	movhi r6,r4
+	mul r7,r1,r4
+	cmp r7,#0
+	movlo r7,#-1
+	movhi r7,#1
+	mul r8,r6,r7
+	mov r6,r8
+	add r3,r3,r6
+	cmp r0,r5 ; 2.2 start
+	movls r6,r0
+	movhi r6,r5
+	mul r7,r0,r5
+	cmp r7,#0
+	movlo r7,#-1
+	movhi r7,#1
+	mul r8,r6,r7
+	mov r6,r8
+	add r3,r3,r6
+	mov r0,r2
+	mov r1,r3
+
+    bal loop
+
+
+	END
